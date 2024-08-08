@@ -24,7 +24,7 @@ public class AuthFailtureHandler implements AuthenticationFailureHandler {
 
         if (exception instanceof DisabledException) {
 
-            // user is disabled
+            
             HttpSession session = request.getSession();
             session.setAttribute("message",
                     Message.builder()
@@ -34,8 +34,6 @@ public class AuthFailtureHandler implements AuthenticationFailureHandler {
             response.sendRedirect("/login");
         } else {
             response.sendRedirect("/login?error=true");
-            // request.getRequestDispatcher("/login").forward(request, response);
-
         }
 
     }

@@ -34,9 +34,8 @@ public class PageController {
     public String home(Model model) {
         System.out.println("Home page handler");
         // sending data to view
-        model.addAttribute("name", "Substring Technologies");
-        model.addAttribute("youtubeChannel", "Learn Code With Durgesh");
-        model.addAttribute("githubRepo", "https://github.com/learncodewithdurgesh/");
+        model.addAttribute("name", "Ricky Technologies");
+        model.addAttribute("youtubeChannel", "Ricky Parte");
         return "home";
     }
 
@@ -75,9 +74,6 @@ public class PageController {
     public String register(Model model) {
 
         UserForm userForm = new UserForm();
-        // default data bhi daal sakte hai
-        // userForm.setName("Durgesh");
-        // userForm.setAbout("This is about : Write something about yourself");
         model.addAttribute("userForm", userForm);
 
         return "register";
@@ -89,8 +85,6 @@ public class PageController {
     public String processRegister(@Valid @ModelAttribute UserForm userForm, BindingResult rBindingResult,
             HttpSession session) {
         System.out.println("Processing registration");
-        // fetch form data
-        // UserForm
         System.out.println(userForm);
 
         // validate form data
@@ -98,22 +92,7 @@ public class PageController {
             return "register";
         }
 
-        // TODO::Validate userForm[Next Video]
 
-        // save to database
-
-        // userservice
-
-        // UserForm--> User
-        // User user = User.builder()
-        // .name(userForm.getName())
-        // .email(userForm.getEmail())
-        // .password(userForm.getPassword())
-        // .about(userForm.getAbout())
-        // .phoneNumber(userForm.getPhoneNumber())
-        // .profilePic(
-        // "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75")
-        // .build();
 
         User user = new User();
         user.setName(userForm.getName());
@@ -123,15 +102,12 @@ public class PageController {
         user.setPhoneNumber(userForm.getPhoneNumber());
         user.setEnabled(false);
         user.setProfilePic(
-                "https://www.learncodewithdurgesh.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fdurgesh_sir.35c6cb78.webp&w=1920&q=75");
+                "");
 
         User savedUser = userService.saveUser(user);
 
         System.out.println("user saved :");
 
-        // message = "Registration Successful"
-
-        // add the message:
 
         Message message = Message.builder().content("Registration Successful").type(MessageType.green).build();
 
